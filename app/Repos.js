@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router'
 
 class Repos extends Component {
 
@@ -10,6 +11,9 @@ class Repos extends Component {
   }
 
   componentDidMount(){
+
+    console.log('componentDidMount from Repos')
+
     fetch('https://api.github.com/users/pro-react/repos')
     .then((response) => response.json())
     .then((responseData) => {
@@ -20,7 +24,9 @@ class Repos extends Component {
 
   render() {
     let repos = this.state.repositories.map((repo) => (
-      <li key={repo.id}>{repo.name}</li>
+      <li key={repo.id}>
+        <Link to={"/repos/details/"+repo.name}>{repo.name}</Link>
+      </li>
     ));
     return (
       <div>
@@ -28,6 +34,7 @@ class Repos extends Component {
         <ul>
           {repos}
         </ul>
+        {this.props.children}
       </div>
     );
   }
