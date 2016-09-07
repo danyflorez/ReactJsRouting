@@ -16,7 +16,7 @@ class Repos extends Component {
 
     fetch('https://api.github.com/users/pro-react/repos')
     .then((response) => {
-      if(reponse.ok){
+      if(response.ok){
         return response.json();
       }else{
         throw new Error('Server error wasnt ok');
@@ -26,7 +26,7 @@ class Repos extends Component {
       this.setState({repositories:responseData});
     })
     .catch((error) => {
-      this.props.history.push(null, '/Error');
+      this.props.history.push('/Error');
     });
   }
 
